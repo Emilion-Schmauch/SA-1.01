@@ -17,14 +17,24 @@ Participant inscrire(char prenom[], char nom[], unsigned int nombre_paticipants)
     return retour;
 }
 
-int test_validite_inscrire(Participant liste_participants[], char prenom[], char nom[], unsigned int nombres_participants){
-    for (int i = 0;i < nombres_participants;++i) {
+int test_validite_inscrire(Participant liste_participants[], char prenom[], char nom[], unsigned int nombre_participants){
+    for (unsigned int i = 0;i < nombre_participants;++i) {
         if (strcmp(liste_participants[i].prenom, prenom) == 0 &&
             strcmp(liste_participants[i].nom, nom) == 0){
             return 0;
         }
     }
     return 1;
+}
+void participants(Participant liste_participants[],unsigned int nombre_participants) {
+    if (nombre_participants == 0) {
+        printf("Aucun participant inscrit\n");
+        return;
+    }
+    for (unsigned int i = 0;i < nombre_participants;++i) {
+        printf("(%u) %s %s : 0 concours\n", liste_participants[i].identifiant, liste_participants[i].prenom, liste_participants[i].nom);
+    }
+    return;
 }
 
 
@@ -62,6 +72,9 @@ int main()
             else {
                 printf("Nom incorrect\n");
             }
+        }
+        if (strcmp(commande, "PARTICIPANTS") == 0) {
+            participants(liste_participant,nombre_participants);
         }
     }
 
